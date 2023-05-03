@@ -12,7 +12,7 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwn
 DROP TABLE {databaseOwner}[{objectQualifier}Dnn.GigabyteGang.HelloWorld_Items]
 GO
 
-CREATE TABLE {databaseOwner}{objectQualifier}Dnn.GigabyteGang.HelloWorld_Items
+CREATE TABLE {databaseOwner}{objectQualifier}HelloWorld_Items
     (
     ItemId int NOT NULL IDENTITY (1, 1),
     ItemName nvarchar(MAX) NOT NULL,
