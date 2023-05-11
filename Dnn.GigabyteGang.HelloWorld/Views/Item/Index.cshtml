@@ -1,37 +1,46 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable< GigabyteGang.Dnn.Dnn.GigabyteGang.HelloWorld.Models.Item >>
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<GigabyteGang.Dnn.Dnn.GigabyteGang.HelloWorld.Models.Item>>
 
 @using System.Text.RegularExpressions
 @using DotNetNuke.Web.Mvc.Helpers
 
 
-<div id="Items-@Dnn.ModuleContext.ModuleId">
-    @if (Model == null)
-    {
-        <p>@Dnn.LocalizeString("NoItems")</p>
-    }
-    else
-    {
-        <ul class="tm_tl">
-            @foreach (var item in Model)
-            {
-                <li class="tm_t">
-                    <h3>@item.ItemName</h3>
-                    <div class="tm_td">@item.ItemDescription</div>
-                    @{
-                        if (Dnn.ModuleContext.IsEditable)
-                        {
-                            <div>
-                                <a href="@Url.Action("Edit", "Item", new {ctl = "Edit", itemId = item.ItemId})">@Dnn.LocalizeString("EditItem")</a>
-                                <a href="@Url.Action("Delete", "Item", new {itemId = item.ItemId})">@Dnn.LocalizeString("DeleteItem")</a>
-                            </div>
-                        }
-                    }
-                </li>
-            }
-        </ul>
-    }
-</div>
-<div>
-    <h2>Hello world!</h2>
-    <h3>Ez itt a modul</h3>
-</div>
+
+<body>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+          rel="stylesheet" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="..\..\module.css" />
+    <div class="wrapper">
+        <div class="image-container">
+            <img id="image1" />
+        </div>
+        <div class="btns-container">
+            <input type="file" id="file" accesskey="image1/*" />
+            <label for="file">Open A Photo</label>
+            <button id="pick-color">Pick Color</button>
+        </div>
+        <div id="error" class="hide"></div>
+        <div id="result" class="hide">
+            <div>
+                <input type="text" id="hex-val-ref" />
+                <button onclick="copy('hex-val-ref')">
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+            </div>
+            <div>
+                <input type="text" id="rgb-val-ref" />
+                <button onclick="copy('rgb-val-ref')">
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+            </div>
+            <div id="picked-color-ref"></div>
+        </div>
+        <div id="custom-alert">Color Code Copied!</div>
+    </div>
+    <!-- Script -->
+    <script src="..\..\Scripts\ColorPicker.js"></script>
+</body>
+</html>
