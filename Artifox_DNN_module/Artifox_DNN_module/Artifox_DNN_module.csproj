@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GigabyteGang.Dnn.Dnn.GigabyteGang.HelloWorld</RootNamespace>
-    <AssemblyName>Dnn.GigabyteGang.HelloWorld</AssemblyName>
+    <RootNamespace>Dnn.Artifox.Artifox_DNN_module</RootNamespace>
+    <AssemblyName>Artifox_DNN_module</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
@@ -119,7 +119,7 @@
     <Content Include="ReleaseNotes.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dnn.GigabyteGang.HelloWorld.dnn">
+    <Content Include="Artifox_DNN_module.dnn">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
@@ -141,13 +141,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\ColorPicker.js" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\PictureUploade\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -181,7 +178,7 @@
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>
           </DevelopmentServerVPath>
-          <IISUrl>http://dnndev.me/desktopmodules/mvc/Dnn.GigabyteGang.HelloWorld</IISUrl>
+          <IISUrl>http://dnndev.me/desktopmodules/mvc/Artifox_DNN_module</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
           <IISAppRootUrl>http://dnndev.me</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
@@ -195,8 +192,8 @@
   </ProjectExtensions>
   <PropertyGroup>
     <Extension>zip</Extension>
-    <DNNFileName>Dnn.GigabyteGang.HelloWorld</DNNFileName>
-    <PackageName>Dnn.GigabyteGang.HelloWorld</PackageName>
+    <DNNFileName>Artifox_DNN_module</DNNFileName>
+    <PackageName>Artifox_DNN_module</PackageName>
   </PropertyGroup>
   <Import Project="BuildScripts\ModulePackage.Targets" />
   <Target Name="AfterBuild" DependsOnTargets="PackageModule">
