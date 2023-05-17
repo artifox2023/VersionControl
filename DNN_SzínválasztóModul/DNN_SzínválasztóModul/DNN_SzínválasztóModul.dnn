@@ -1,13 +1,13 @@
-<dotnetnuke type="Package" version="5.0">
+﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="Artifox_DNN_module" type="Module" version="00.00.01">
-      <friendlyName>Artifox_DNN_module</friendlyName>
-      <description>Artifox_DNN_module</description>
+    <package name="DNN_SzínválasztóModul" type="Module" version="00.00.01">
+      <friendlyName>DNN_SzínválasztóModul</friendlyName>
+      <description>DNN_SzínválasztóModul</description>
       <iconFile>~/Icons/Sigma/Software_32X32_Standard.png</iconFile>
       <owner>
         <name>GigabyteGang</name>
         <organization>GigabyteGang</organization>
-        <url>http://20.234.113.211:8093</url>
+        <url>https://20.234.113.211:8093</url>
         <email>artifox.festekbolt@gmail.com</email>
       </owner>
       <license src="License.txt"></license>
@@ -18,7 +18,7 @@
       <components>
         <component type="Script">
           <scripts>
-            <basePath>DesktopModules\MVC\Artifox_DNN_module</basePath>
+            <basePath>DesktopModules\MVC\DNN_SzínválasztóModul</basePath>
             <script type="Install">
               <path>Providers\DataProviders\SqlDataProvider</path>
               <name>00.00.01.SqlDataProvider</name>
@@ -33,7 +33,7 @@
         </component>
         <component type="ResourceFile">
           <resourceFiles>
-            <basePath>DesktopModules/MVC/Artifox_DNN_module</basePath>
+            <basePath>DesktopModules/MVC/DNN_SzínválasztóModul</basePath>
             <resourceFile>
               <name>Resources.zip</name>
             </resourceFile>
@@ -41,18 +41,18 @@
         </component>
         <component type="Module">
           <desktopModule>
-            <moduleName>Artifox_DNN_module</moduleName>
-            <foldername>Artifox_DNN_module</foldername>
-            <businessControllerClass>Dnn.Artifox.Artifox_DNN_module.Components.FeatureController</businessControllerClass>
+            <moduleName>DNN_SzínválasztóModul</moduleName>
+            <foldername>DNN_SzínválasztóModul</foldername>
+            <businessControllerClass>Dnn.Artifox.DNN_SzínválasztóModul.Components.FeatureController</businessControllerClass>
             <supportedFeatures />
             <moduleDefinitions>
               <moduleDefinition>
-                <friendlyName>Artifox_DNN_module</friendlyName>
+                <friendlyName>DNN_SzínválasztóModul</friendlyName>
                 <defaultCacheTime>0</defaultCacheTime>
                 <moduleControls>
                   <moduleControl>
                     <controlKey />
-                    <controlSrc>Dnn.Artifox.Artifox_DNN_module.Controllers/Image/Add.mvc</controlSrc>
+                    <controlSrc>Dnn.Artifox.DNN_SzínválasztóModul.Controllers/Item/Index.mvc</controlSrc>
                     <supportsPartialRendering>False</supportsPartialRendering>
                     <controlTitle />
                     <controlType>View</controlType>
@@ -61,10 +61,21 @@
                     <viewOrder>0</viewOrder>
                   </moduleControl>
                   <moduleControl>
-                    <controlKey>Settings</controlKey>
-                    <controlSrc>Dnn.Artifox.Artifox_DNN_module.Controllers/Settings/Settings.mvc</controlSrc>
+                    <controlKey>Edit</controlKey>
+                    <controlSrc>Dnn.Artifox.DNN_SzínválasztóModul.Controllers/Item/Edit.mvc</controlSrc>
                     <supportsPartialRendering>False</supportsPartialRendering>
-                    <controlTitle>Artifox_DNN_module Settings</controlTitle>
+                    <controlTitle>Edit Content</controlTitle>
+                    <controlType>Edit</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>0</viewOrder>
+                    <supportsPopUps>True</supportsPopUps>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>Settings</controlKey>
+                    <controlSrc>Dnn.Artifox.DNN_SzínválasztóModul.Controllers/Settings/Settings.mvc</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle>DNN_SzínválasztóModul Settings</controlTitle>
                     <controlType>Edit</controlType>
                     <iconFile />
                     <helpUrl />
@@ -78,7 +89,7 @@
         <component type="Assembly">
           <assemblies>
             <assembly>
-              <name>Artifox_DNN_module.dll</name>
+              <name>DNN_SzínválasztóModul.dll</name>
               <path>bin</path>
             </assembly>
           </assemblies>

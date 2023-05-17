@@ -10,12 +10,12 @@
 ' 
 */
 
-using Dnn.Artifox.Artifox_DNN_module.Models;
+using Dnn.Artifox.DNN_SzínválasztóModul.Models;
 using DotNetNuke.Data;
 using DotNetNuke.Framework;
 using System.Collections.Generic;
 
-namespace Dnn.Artifox.Artifox_DNN_module.Components
+namespace Dnn.Artifox.DNN_SzínválasztóModul.Components
 {
     internal interface IItemManager
     {

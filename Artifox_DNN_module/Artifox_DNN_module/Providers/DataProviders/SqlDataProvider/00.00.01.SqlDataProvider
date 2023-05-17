@@ -37,6 +37,17 @@ ALTER TABLE {databaseOwner}{objectQualifier}Artifox_DNN_module_Items ADD CONSTRA
 GO
 
 
+CREATE TABLE {databaseOwner}{objectQualifier}Image
+ (
+    [ImageId] INT PRIMARY KEY,
+    [Title] varchar(250) null
+    [ImagePath] varchar(MAX) null
+ ) ON [PRIMARY]
+    TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+
 /************************************************************/
 /*****              SqlDataProvider                     *****/
 /************************************************************/

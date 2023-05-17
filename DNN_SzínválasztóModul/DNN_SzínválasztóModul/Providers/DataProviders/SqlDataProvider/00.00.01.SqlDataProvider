@@ -1,0 +1,38 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Image]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}Image]
+GO
+
+CREATE TABLE {databaseOwner}{objectQualifier}Image
+    (
+    ImageId int NOT NULL IDENTITY (1, 1),
+    Title nvarchar(MAX) NOT NULL,
+    ImagePath nvarchar(MAX) NOT NULL,
+    UserId int NOT NULL
+    ModuleId int NOT NULL
+    )  ON [PRIMARY]
+     TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+ALTER TABLE {databaseOwner}{objectQualifier}Image ADD CONSTRAINT
+    PK_{objectQualifier}Image PRIMARY KEY CLUSTERED 
+    (
+    ImageId
+    ) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/
