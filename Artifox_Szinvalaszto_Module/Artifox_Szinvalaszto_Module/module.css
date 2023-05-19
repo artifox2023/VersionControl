@@ -1,0 +1,57 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+#canvas {
+    display: block;
+    padding: 0;
+    margin: auto;
+    width: 400;
+    height: 400;
+}
+
+#image {
+    display: none;
+}
+
+.btns-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    margin: 1em 0 1.5em 0;
+}
+
+input,
+label {
+    border: none;
+    outline: none;
+}
+
+#imageInput {
+    display: none;
+}
+
+label {
+    display: block;
+    font-size: 1.1em;
+    background-color: #025bee;
+    color: #ffffff;
+    text-align: center;
+    padding: 0.8em 0.5em;
+    border-radius: 0.5em;
+    cursor: pointer;
+}
+
+#Szín {
+    display: none;
+    vertical-align: middle;
+}
+
+#output {
+    display: none;
+    margin: auto;
+    text-align: center;
+}
