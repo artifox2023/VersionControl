@@ -5,19 +5,32 @@
     font-family: "Poppins", sans-serif;
 }
 
+.sajatmodule {
+    width: 100%;
+    margin: 40px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 20px;
+    color: rgb(208,89,65); 
+}
+
 #canvas {
     display: block;
     padding: 0;
     margin: auto;
-    width: 400;
-    height: 400;
+    width: 100%;
+    height: auto;
+}
+
+.modulimagecontainer {
+    border-radius: 20px;
 }
 
 #image {
     display: none;
 }
 
-.btns-container {
+.modulbtns-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;
@@ -30,15 +43,15 @@ label {
     outline: none;
 }
 
-#imageInput {
+#modulimageInput {
     display: none;
 }
 
 label {
     display: block;
     font-size: 1.1em;
-    background-color: #025bee;
-    color: #ffffff;
+    background-color: #FF9F24;
+    color: white;
     text-align: center;
     padding: 0.8em 0.5em;
     border-radius: 0.5em;
@@ -50,7 +63,7 @@ label {
     vertical-align: middle;
 }
 
-#output {
+#moduloutput {
     display: none;
     margin: auto;
     text-align: center;

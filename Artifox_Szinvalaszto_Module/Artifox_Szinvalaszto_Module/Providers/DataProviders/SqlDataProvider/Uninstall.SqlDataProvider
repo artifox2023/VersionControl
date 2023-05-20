@@ -1,3 +1,7 @@
-﻿IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Artifox_Szinvalaszto_Module_Items]') AND type in (N'U'))
-DROP TABLE {databaseOwner}[{objectQualifier}Artifox_Szinvalaszto_Module_Items]
+﻿IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Artifox_Szinvalaszto_Module_Image]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}Artifox_Szinvalaszto_Module_Image]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Artifox_Szinvalaszto_Module_Product]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}Artifox_Szinvalaszto_Module_Product]
 GO

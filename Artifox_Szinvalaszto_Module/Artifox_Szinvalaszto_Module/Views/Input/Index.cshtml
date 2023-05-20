@@ -3,27 +3,28 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Színválasztó</h2>
+<div class="sajatmodule">
+    <h2>Színválasztó</h2>
 
-<div class="image-container">
-    <canvas id="canvas"></canvas>
+    <div class="modulimagecontainer">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="modulbtns-container">
+        <input type="file" id="modulimageInput" accept="jpg, png, img">
+        <label for="modulimageInput">Kép feltöltése</label>
+        <label>Kattintson bárhova a képen!</label>
+    </div>
+
+    <div id="moduloutput">
+        <label id="Szín"></label>
+    </div>
 </div>
-
-<div class="btns-container">
-    <input type="file" id="imageInput" accept="jpg, png, img">
-    <label for="imageInput">Kép feltöltése</label>
-    <label>Kattintson bárhova a képen!</label>
-</div>
-
-<div id="output">
-    <label id="Szín"></label>
-</div>
-
 
 <script>
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    const imageInput = document.getElementById('imageInput');
+    const imageInput = document.getElementById('modulimageInput');
 
     imageInput.addEventListener('change', function (event) {
         const file = event.target.files[0];
@@ -36,20 +37,21 @@
                 // source: https://livefiredev.com/html5-how-to-scale-image-to-fit-a-canvas-with-demos/
                 // get the scale
                 // it is the min of the 2 ratios
-                let scale_factor = Math.min(canvas.width / image.width, canvas.height / image.height);
-                console.log(canvas.width)
+                //let scale_factor = Math.min(canvas.width / image.width, canvas.height / image.height);
                 // Lets get the new width and height based on the scale factor
-                let newWidth = image.width * scale_factor;
-                let newHeight = image.height * scale_factor;
+                //let newWidth = image.width * scale_factor;
+                //let newHeight = image.height * scale_factor;
 
                 // get the top left position of the image
                 // in order to center the image within the canvas
-                let x = (canvas.width / 2) - (newWidth / 2);
-                let y = (canvas.height / 2) - (newHeight / 2);
+                //let x = (canvas.width / 2) - (newWidth / 2);
+                //let y = (canvas.height / 2) - (newHeight / 2);
 
                 // When drawing the image, we have to scale down the image
                 // width and height in order to fit within the canvas
-                ctx.drawImage(image, x, y, newWidth, newHeight);
+                canvas.height = image.height;
+                canvas.width = image.width;
+                ctx.drawImage(image, 0, 0);
             };
             image.src = readerEvent.target.result;
         };
@@ -64,8 +66,8 @@
         const pixelData = ctx.getImageData(x, y, 1, 1).data;
         const [red, green, blue, alpha] = pixelData;
 
-        console.log(`Color at (${x}, ${y}): RGBA(${red}, ${green}, ${blue}, ${alpha})`);
-        document.getElementById('output').style.display = "block"
+        //console.log(`Color at (${x}, ${y}): RGBA(${red}, ${green}, ${blue}, ${alpha})`);
+        document.getElementById('moduloutput').style.display = "block"
         document.getElementById('Szín').innerHTML = `RGB(${red}, ${green}, ${blue})`
     });
 </script>
