@@ -66,8 +66,9 @@
         const pixelData = ctx.getImageData(x, y, 1, 1).data;
         const [red, green, blue, alpha] = pixelData;
 
-        //console.log(`Color at (${x}, ${y}): RGBA(${red}, ${green}, ${blue}, ${alpha})`);
+        console.log(`Color at (${x}, ${y}): RGBA(${red}, ${green}, ${blue}, ${alpha})`);
         document.getElementById('moduloutput').style.display = "block"
+        document.getElementById('Szín').style.backgroundColor = 'rgb('+red+', '+green+', '+blue+')'
         document.getElementById('Szín').innerHTML = `RGB(${red}, ${green}, ${blue})`
     });
 </script>
