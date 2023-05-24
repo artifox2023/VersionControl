@@ -135,6 +135,7 @@
             this.Controls.Add(this.textBoxPrice);
             this.Controls.Add(this.buttonEditPrice);
             this.Controls.Add(this.TermekekDGV);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.TermekekDGV)).EndInit();

@@ -12,8 +12,9 @@ using Hotcakes.CommerceDTO.v1;
 using Hotcakes.CommerceDTO.v1.Client;
 using Newtonsoft.Json;
 using Hotcakes.Commerce.Catalog;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Net;
 using Newtonsoft.Json.Linq;
+
 
 namespace HotCakes2
 {
@@ -25,42 +26,51 @@ namespace HotCakes2
             GetData();
         }
 
-        
+
         //A termékek és adatinak betöltése a datagridviewba
         public void GetData()
         {
             string url = "http://20.234.113.211:8093/";
             string key = "1-cebeaa9d-f647-4750-9821-26f097f3d6d4";
 
-
-
             Api proxy = new Api(url, key);
 
-            ApiResponse<List<ProductDTO>> response = proxy.ProductsFindAll();
-
-            string json = JsonConvert.SerializeObject(response);
-
-            ApiResponse<List<ProductDTO>> deserializedResponse = JsonConvert.DeserializeObject<ApiResponse<List<ProductDTO>>>(json);
-
-            DataTable dt = new DataTable();
-            
-            dt.Columns.Add("ProductName", typeof(string));
-            dt.Columns.Add("Sku", typeof(string));
-            dt.Columns.Add("SitePrice", typeof(string));
-            dt.Columns.Add("Description", typeof(string));
-            dt.Columns.Add("CreationDateUtc", typeof(DateTime));
-            dt.Columns.Add("Bvin", typeof(string));
-
-            foreach (ProductDTO item in deserializedResponse.Content)
+            try
             {
-                dt.Rows.Add( item.ProductName, item.Sku, item.SitePrice, item.LongDescription, item.CreationDateUtc, item.Bvin);
+                ApiResponse<List<ProductDTO>> response = proxy.ProductsFindAll();
+
+                if (response != null && response.Content != null)
+                {
+                    List<ProductDTO> productList = response.Content;
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("ProductName", typeof(string));
+                    dt.Columns.Add("Sku", typeof(string));
+                    dt.Columns.Add("SitePrice", typeof(string));
+                    dt.Columns.Add("Description", typeof(string));
+                    dt.Columns.Add("CreationDateUtc", typeof(DateTime));
+                    dt.Columns.Add("Bvin", typeof(string));
+
+                    foreach (ProductDTO item in productList)
+                    {
+                        dt.Rows.Add(item.ProductName, item.Sku, Math.Round(item.SitePrice, 0), item.LongDescription, item.CreationDateUtc, item.Bvin);
+                    }
+
+                    TermekekDGV.DataSource = dt;
+                }
+                else
+                {
+                    // Handle null response or empty content
+                    MessageBox.Show("Empty response content.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            
-            TermekekDGV.DataSource = dt;
-
-            
-
+            catch (Exception ex)
+            {
+                // Handle any exceptions that occurred
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         //Az ár megváltoztatásához függvény
         public void ChangePrice()
@@ -74,7 +84,7 @@ namespace HotCakes2
 
             //A jelenlegi sor ID-nak meghatározása
             int rowIndex = TermekekDGV.CurrentCell.RowIndex;
-            
+
             var productId = TermekekDGV.Rows[rowIndex].Cells["Bvin"].Value.ToString();
 
             var product = proxy.ProductsFind(productId).Content;
@@ -86,7 +96,7 @@ namespace HotCakes2
 
             //A végén a frissített adatok betöltése
             GetData();
-           
+
         }
 
         //A leírás megváltoztatásához függvény
@@ -115,22 +125,22 @@ namespace HotCakes2
             //A végén a frissített adatok betöltése
             GetData();
 
-            
+
         }
 
         //Ha a felhasználó az 'ár megváltoztatása' nevű gombra kattint
         private void Szerkesztés_Click(object sender, EventArgs e)
         {
-
             //Ellenőrzés, hogy nem üres-e az ennek megfelelő textbox (üres értéket nem lehet megadni)
-            if (string.IsNullOrEmpty(textBoxPrice.Text))
+
+            if (!ValidateTextboxNotEmpty(textBoxPrice.Text))
             {
                 MessageBox.Show("Kérjük adjon meg értéket!", "Nem adott meg új árat!");
             }
             else
             {
                 //Ellenőrzés, hogy számértéket adott-e meg a felhasználó
-                if (!int.TryParse(textBoxPrice.Text, out int price))
+                if (!ValidatePriceCanConvInt(textBoxPrice.Text))
                 {
                     MessageBox.Show("Kérjük, számértéket adjon meg az árnak!", "Érvénytelen érték!");
                     textBoxPrice.Focus();
@@ -146,15 +156,15 @@ namespace HotCakes2
 
                 }
             }
-            
+
         }
 
         //Ha a felhasználó az 'Leírás szerkesztése' nevű gombra kattint
         private void button1_Click(object sender, EventArgs e)
         {
-         
+
             //Ellenőrzés, hogy nem üres-e az ennek megfelelő textbox (üres értéket nem lehet megadni)
-            if (string.IsNullOrEmpty(textboxDescription.Text))
+            if (!ValidateTextboxNotEmpty(textboxDescription.Text))
             {
                 MessageBox.Show("Kérjük adjon meg termékleírást!", "Nem adott meg új leírást!");
                 textboxDescription.Focus();
@@ -196,9 +206,28 @@ namespace HotCakes2
         }
 
 
+        public bool ValidateTextboxNotEmpty(string textboxvalue)
+        {
+            return !string.IsNullOrEmpty(textboxvalue);
+        }
+
+        public bool ValidatePriceCanConvInt(string price)
+        {
+            if (!string.IsNullOrEmpty(price))
+            {
+                int result;
+                return int.TryParse(price, out result);
+            }
+
+            return false;
+        }
+
+
+
+
         private void TermekekDGV_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
